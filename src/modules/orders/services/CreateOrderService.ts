@@ -49,7 +49,7 @@ class CreateOrderService {
       product => !findProductIds.includes(product.id),
     );
 
-    if (checkInexistentProducts) {
+    if (checkInexistentProducts.length) {
       throw new AppError(`Products with id ${checkInexistentProducts[0].id}`);
     }
 
@@ -59,7 +59,7 @@ class CreateOrderService {
         product.quantity,
     );
 
-    if (productsWithoutQuantityAvailable) {
+    if (productsWithoutQuantityAvailable.length) {
       throw new AppError(
         `The quantity ${productsWithoutQuantityAvailable[0].quantity} is not available for ${productsWithoutQuantityAvailable[0].id}`,
       );
@@ -81,7 +81,7 @@ class CreateOrderService {
     const orderedProductsQuantity = order_products.map(product => ({
       id: product.product_id,
       quantity:
-        findProducts.filter(p => p.id === product.product.id)[0].quantity -
+        findProducts.filter(p => p.id === product.product_id)[0].quantity -
         product.quantity,
     }));
 

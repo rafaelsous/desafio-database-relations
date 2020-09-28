@@ -13,9 +13,7 @@ export default class AddProductIdtoOrdersProducts1601221160950
       new TableColumn({
         name: 'product_id',
         type: 'uuid',
-        isNullable: false,
-        generationStrategy: 'uuid',
-        default: 'uuid_generate_v4()',
+        isNullable: true,
       }),
     );
 
